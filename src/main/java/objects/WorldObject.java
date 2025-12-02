@@ -22,7 +22,7 @@ public class WorldObject implements Cloneable {
     }
 
     public void interact(WorldObject object){
-        System.out.println(String.format("%s interacted with %s", this.getTitle(), object.getTitle()));
+        System.out.printf("%s interacted with %s%n", this.getTitle(), object.getTitle());
     }
 
     // Getters
