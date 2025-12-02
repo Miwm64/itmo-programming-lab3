@@ -3,7 +3,7 @@ package objects;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Tree extends WorldObject{
+public class Tree extends WorldObject implements Shineable{
     private double height; // height in meters
 
     // Constructors
@@ -14,6 +14,11 @@ public class Tree extends WorldObject{
     public Tree(String title, LocalDateTime time, String description, double height) {
         super(title, time, description);
         this.height = height;
+    }
+
+
+    public void shine(){
+        System.out.printf("Tree %s shines", title);
     }
 
     // Getters
