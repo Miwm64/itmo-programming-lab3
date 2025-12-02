@@ -72,6 +72,6 @@ public class WorldObject implements Cloneable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, creationTime, description);
+        return Objects.hash(getClass(), title, creationTime, description);
     }
 }

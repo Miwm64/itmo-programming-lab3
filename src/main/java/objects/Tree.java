@@ -16,9 +16,9 @@ public class Tree extends WorldObject implements Shineable{
         this.height = height;
     }
 
-
+    @Override
     public void shine(){
-        System.out.printf("Tree %s shines", title);
+        System.out.printf("Tree %s shines\n", title);
     }
 
     // Getters
@@ -55,6 +55,6 @@ public class Tree extends WorldObject implements Shineable{
     }
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), height);
+        return Objects.hash(getClass(), title, creationTime, description, height);
     }
 }
