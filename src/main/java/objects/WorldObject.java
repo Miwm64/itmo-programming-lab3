@@ -5,9 +5,9 @@ import java.util.Objects;
 
 
 public class WorldObject implements Cloneable {
-    private String title;
-    private final LocalDateTime creationTime;
-    private String description;
+    protected String title;
+    protected final LocalDateTime creationTime;
+    protected String description;
 
 
     // Constructors
