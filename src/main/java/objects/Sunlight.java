@@ -13,7 +13,7 @@ public class Sunlight extends WorldObject {
         super(title, creationTime, description);
     }
 
-    public void interact(Shineable object) {
+    public void shineUpon(Shineable object) {
         Objects.requireNonNull(object);
         object.shine();
     }
