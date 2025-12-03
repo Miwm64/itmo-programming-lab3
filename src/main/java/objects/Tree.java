@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Tree extends WorldObject implements Shineable{
-    private double height; // height in meters
+    protected double height; // height in meters
 
     // Constructors
     public Tree(){
