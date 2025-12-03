@@ -4,6 +4,7 @@ import objects.WorldObject;
 import util.Pair;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class WaterLocation extends Location{
     protected WaterSource waterSource;
@@ -30,5 +31,26 @@ public class WaterLocation extends Location{
     // Setters
     public void setWaterSource(WaterSource source){
         waterSource = source;
+    }
+
+    // Java object methods
+    @Override
+    public String toString() {
+        return String.format("type: WaterLocation\nname: %s\ntype: %s\ndescription: %s\nobjects: %s\nWaterSource: %s",
+                name, type, description, objects, waterSource);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        WaterLocation that = (WaterLocation) o;
+        return super.equals(o) && Objects.equals(waterSource, that.waterSource);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), waterSource);
     }
 }

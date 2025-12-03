@@ -18,7 +18,6 @@ public class WaterSource {
         return new Pair<>(givenAmount, null);
     }
 
-
     // Getters
     public double getWaterLeftAmount() {
         return waterLeftAmount;
@@ -27,4 +26,28 @@ public class WaterSource {
     public double getIsSafeToDrink() {
         return isSafeToDrink;
     }
+
+    // Java object methods
+    @Override
+    public String toString() {
+        return String.format("type: WaterSource\nsafety: %f\nwaterLeftAmount: %f",
+                isSafeToDrink, waterLeftAmount);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        WaterSource that = (WaterSource) o;
+        return Double.compare(that.isSafeToDrink, isSafeToDrink) == 0 &&
+                Double.compare(that.waterLeftAmount, waterLeftAmount) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return java.util.Objects.hash(isSafeToDrink, waterLeftAmount);
+    }
+
+
 }
