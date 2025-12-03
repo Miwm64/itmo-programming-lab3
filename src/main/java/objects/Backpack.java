@@ -2,9 +2,11 @@ package objects;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Objects;
 
 public class Backpack extends WorldObject{
-    protected ArrayList<WorldObject> items;
+    protected ArrayList<WorldObject> items = new ArrayList<>();
 
     // Constructor
     public Backpack(){
@@ -21,7 +23,7 @@ public class Backpack extends WorldObject{
     }
 
     public ArrayList<WorldObject> getItems(){
-        return items;
+        return new ArrayList<>(items);
     }
 
     // It returns an item and remove it from array
@@ -37,6 +39,41 @@ public class Backpack extends WorldObject{
     }
 
     public void removeItem(WorldObject object){
-        items.remove(object);
+        items.remove(Objects.requireNonNull(object));
+    }
+
+    public void addItem(WorldObject object){
+        items.add(Objects.requireNonNull(object));
+    }
+
+    public void setItems(ArrayList<WorldObject> objects){
+        items = Objects.requireNonNull(objects);
+    }
+
+    // Java object methods
+    @Override
+    public Backpack clone() {
+        Backpack clone = (Backpack) super.clone();
+        clone.items = new ArrayList<>(items);
+        return clone;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("type: Backpack\ntitle: %s\ncreationTime: %s\ndescription: %s\nItems: %s",
+                title, creationTime, description, items.toString());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        return super.equals(o) && Objects.equals(items, ((Backpack) o).items);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getClass(), title, creationTime, description, items);
     }
 }
