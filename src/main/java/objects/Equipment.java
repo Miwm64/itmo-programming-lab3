@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Equipment extends WorldObject{
-    private EquipmentType type;
-    private int durability;
+    protected EquipmentType type;
+    protected int durability;
 
     // Constructors
     public Equipment(EquipmentType type, int durability){
