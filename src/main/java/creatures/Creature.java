@@ -29,8 +29,7 @@ public class Creature extends WorldObject {
 
     @Override
     public void interact(WorldObject object) {
-        if (object instanceof Creature){
-            Creature creature = (Creature) object;
+        if (object instanceof Creature creature){
             System.out.println(this.title + "feasted on " + creature.getTitle());
             creature.addBuff(new Buff(BuffType.WOUND, 0.3));
         }
@@ -73,6 +72,7 @@ public class Creature extends WorldObject {
     public ArrayList<Buff> getBuffs() {
         return buffs;
     }
+
     public Location getCurrentLocation() {
         return currentLocation;
     }
