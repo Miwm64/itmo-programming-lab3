@@ -1,5 +1,7 @@
 package objects;
 
+import creatures.Creature;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -47,8 +49,11 @@ public class WorldObject implements Cloneable {
 
     // Java object methods
     @Override
-    public WorldObject clone() throws CloneNotSupportedException{
+    public WorldObject clone() {
         try {
+            if (this instanceof Creature){
+                throw new CloneNotSupportedException("Creatures have unique identities and cannot be cloned");
+            }
             return (WorldObject) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new AssertionError("Clone must not fail, yet it failed",e);
