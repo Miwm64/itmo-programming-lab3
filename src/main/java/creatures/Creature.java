@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Creature extends WorldObject {
-    private final CreatureType type;
-    private ArrayList<CreatureProperty> properties;
-    private ArrayList<Buff> buffs;
-    private String birthPlanet; // TODO object planet
-    private Location currentLocation;
-    private boolean isAlive;
+    protected final CreatureType type;
+    protected ArrayList<CreatureProperty> properties;
+    protected ArrayList<Buff> buffs;
+    protected String birthPlanet; // TODO object planet
+    protected Location currentLocation;
+    protected boolean isAlive;
 
     public Creature(String title, LocalDateTime creationTime, String description, String birthPlanet,
                     ArrayList<Buff> buffs, Location currentLocation, boolean isAlive,
