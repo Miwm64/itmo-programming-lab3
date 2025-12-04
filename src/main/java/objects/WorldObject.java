@@ -47,7 +47,7 @@ public class WorldObject implements Cloneable {
 
     // Java object methods
     @Override
-    public WorldObject clone() {
+    public WorldObject clone() throws CloneNotSupportedException{
         try {
             return (WorldObject) super.clone();
         } catch (CloneNotSupportedException e) {

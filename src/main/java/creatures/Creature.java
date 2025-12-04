@@ -5,6 +5,7 @@ import objects.WorldObject;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Creature extends WorldObject {
     private final CreatureType type;
@@ -41,19 +42,19 @@ public class Creature extends WorldObject {
 
     // Setters
     public void addBuff(Buff buff){
-        buffs.add(buff);
+        buffs.add(Objects.requireNonNull(buff));
     }
 
     public void setBirthPlanet(String birthPlanet) {
-        this.birthPlanet = birthPlanet;
+        this.birthPlanet = Objects.requireNonNull(birthPlanet);
     }
 
     public void setBuffs(ArrayList<Buff> buffs) {
-        this.buffs = buffs;
+        this.buffs = Objects.requireNonNull(buffs);
     }
 
     public void setCurrentLocation(Location currentLocation) {
-        this.currentLocation = currentLocation;
+        this.currentLocation = Objects.requireNonNull(currentLocation);
     }
 
     public void setAlive(boolean alive) {
@@ -61,7 +62,7 @@ public class Creature extends WorldObject {
     }
 
     public void setProperties(ArrayList<CreatureProperty> properties) {
-        this.properties = properties;
+        this.properties = Objects.requireNonNull(properties);
     }
 
     // Getters
@@ -88,4 +89,37 @@ public class Creature extends WorldObject {
         return type;
     }
 
+
+    // Java object methods
+    @Override
+    public Creature clone() throws CloneNotSupportedException {
+        throw new CloneNotSupportedException("Creatures have unique identities and cannot be cloned");
+    }
+
+    @Override
+    public String toString() {
+        return String.format("type: Creature\ntitle: %s\ncreationTime: %s\ndescription: %s\nType: %s\nProperties: %s\nBuffs: %s\nBirth Planet: %s\nCurrent Location: %s\nAlive: %b",
+                title, creationTime, description, type, properties, buffs,
+                birthPlanet, currentLocation, isAlive);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Creature creature = (Creature) o;
+        return super.equals(o) && type == creature.type &&
+                isAlive == creature.isAlive &&
+                Objects.equals(properties, creature.properties) &&
+                Objects.equals(buffs, creature.buffs) &&
+                Objects.equals(birthPlanet, creature.birthPlanet) &&
+                Objects.equals(currentLocation, creature.currentLocation);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getClass(), title, creationTime, description,
+                birthPlanet, buffs, currentLocation, isAlive);
+    }
 }
