@@ -1,5 +1,6 @@
 package locations;
 
+import creatures.Buff;
 import util.Pair;
 
 public class WaterSource {
