@@ -92,11 +92,6 @@ public class Creature extends WorldObject {
 
     // Java object methods
     @Override
-    public Creature clone() throws CloneNotSupportedException {
-        throw new CloneNotSupportedException("Creatures have unique identities and cannot be cloned");
-    }
-
-    @Override
     public String toString() {
         return String.format("type: Creature\ntitle: %s\ncreationTime: %s\ndescription: %s\nType: %s\nProperties: %s\nBuffs: %s\nBirth Planet: %s\nCurrent Location: %s\nAlive: %b",
                 title, creationTime, description, type, properties, buffs,
