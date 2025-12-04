@@ -1,5 +1,6 @@
 package locations;
 
+import creatures.Buff;
 import objects.WorldObject;
 import util.Pair;
 
