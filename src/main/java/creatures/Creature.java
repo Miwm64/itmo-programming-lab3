@@ -44,6 +44,10 @@ public class Creature extends WorldObject {
         buffs.add(Objects.requireNonNull(buff));
     }
 
+    public void removeBuff(Buff buff){
+        buffs.remove(Objects.requireNonNull(buff));
+    }
+
     public void setBirthPlanet(String birthPlanet) {
         this.birthPlanet = Objects.requireNonNull(birthPlanet);
     }
