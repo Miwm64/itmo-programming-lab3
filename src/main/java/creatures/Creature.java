@@ -115,6 +115,6 @@ public class Creature extends WorldObject {
     @Override
     public int hashCode() {
         return Objects.hash(getClass(), title, creationTime, description,
-                birthPlanet, buffs, currentLocation, isAlive);
+                birthPlanet, buffs, currentLocation, isAlive, type, properties);
     }
 }
