@@ -2,6 +2,7 @@ package creatures;
 
 import locations.Location;
 import objects.WorldObject;
+import world.Planet;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,11 +12,11 @@ public class Creature extends WorldObject {
     protected final CreatureType type;
     protected ArrayList<CreatureProperty> properties;
     protected ArrayList<Buff> buffs;
-    protected String birthPlanet; // TODO object planet
+    protected Planet birthPlanet;
     protected Location currentLocation;
     protected boolean isAlive;
 
-    public Creature(String title, LocalDateTime creationTime, String description, String birthPlanet,
+    public Creature(String title, LocalDateTime creationTime, String description, Planet birthPlanet,
                     ArrayList<Buff> buffs, Location currentLocation, boolean isAlive,
                     ArrayList<CreatureProperty> properties, CreatureType type) {
         super(title, creationTime, description);
@@ -48,7 +49,7 @@ public class Creature extends WorldObject {
         buffs.remove(Objects.requireNonNull(buff));
     }
 
-    public void setBirthPlanet(String birthPlanet) {
+    public void setBirthPlanet(Planet birthPlanet) {
         this.birthPlanet = Objects.requireNonNull(birthPlanet);
     }
 
@@ -69,7 +70,7 @@ public class Creature extends WorldObject {
     }
 
     // Getters
-    public String getBirthPlanet() {
+    public Planet getBirthPlanet() {
         return birthPlanet;
     }
 
