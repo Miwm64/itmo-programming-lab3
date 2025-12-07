@@ -8,11 +8,12 @@ import world.Planet;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Random;
 
 public class Human extends Creature{
-    protected ArrayList<Human> knownHumans;
+    protected HashSet<Human> knownHumans;
     protected ArrayList<String> equipments; // TODO Objects
     protected Faction faction;
     protected Name name;
@@ -21,12 +22,12 @@ public class Human extends Creature{
     protected boolean isEyesOpened;
     protected boolean isOnMove;
     protected HumanFaceExpression faceExpression;
-    protected ArrayList<Fact> knownFacts;
+    protected HashSet<Fact> knownFacts;
 
     public Human(String title, LocalDateTime creationTime, String description, Planet birthPlanet,
                  ArrayList<Buff> buffs, Location currentLocation, boolean isAlive,
                  ArrayList<CreatureProperty> properties, CreatureType type, Name name,
-                 ArrayList<Human> knownHumans, ArrayList<Fact> knownFacts, boolean isOnMove, boolean isEyesOpened,
+                 HashSet<Human> knownHumans, HashSet<Fact> knownFacts, boolean isOnMove, boolean isEyesOpened,
                  Faction faction, HumanFaceExpression faceExpression, double exhaustion, ArrayList<String> equipments,
                  Backpack backpack) {
         super(title, creationTime, description, birthPlanet, buffs, currentLocation, isAlive, properties, type);
