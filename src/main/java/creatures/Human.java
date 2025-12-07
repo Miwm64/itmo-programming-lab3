@@ -1,5 +1,6 @@
 package creatures;
 
+import exceptions.BackpackAlreadyExistsException;
 import locations.Location;
 import objects.Backpack;
 import objects.WorldObject;
@@ -10,7 +11,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Random;
 
 public class Human extends Creature{
     protected HashSet<Human> knownHumans;
@@ -50,7 +50,7 @@ public class Human extends Creature{
         if (fall){
             double n = Math.random() * 100;
             if (100 - exhaustion - 1 < n){
-                System.out.printf("and got wounded");
+                System.out.print("and got wounded");
                 addBuff(new Buff(BuffType.WOUND, exhaustion/4));
             }
         }
@@ -89,6 +89,13 @@ public class Human extends Creature{
         this.faceExpression = expression;
     }
 
+    public void lookAt(WorldObject object){
+        System.out.printf("%s looks at %s\n", title, object.getTitle());
+        if (object instanceof Human human){
+            human.setFaceExpression(HumanFaceExpression.ANGRY);
+        }
+    }
+
     // Getters
     public Backpack getBackpack() {
         return backpack;
@@ -108,7 +115,7 @@ public class Human extends Creature{
     public Name getName() {
         return name;
     }
-    public ArrayList<Human> getKnownHumans() {
+    public HashSet<Human> getKnownHumans() {
         return knownHumans;
     }
 
@@ -124,6 +131,7 @@ public class Human extends Creature{
 
     // Setters
     public void setFaceExpression(HumanFaceExpression faceExpression) {
+        System.out.printf("%s looks %s\n", title, faceExpression.toString());
         this.faceExpression = faceExpression;
     }
 
@@ -147,8 +155,14 @@ public class Human extends Creature{
         this.equipments = new ArrayList<>(Objects.requireNonNull(equipments));
     }
 
-    public void setBackpack(Backpack backpack) {
+    public void wearBackpack(Backpack backpack) throws BackpackAlreadyExistsException {
         this.backpack = Objects.requireNonNull(backpack);
+    }
+
+    public Backpack takeOffBackpack(){
+        Backpack backpack = this.backpack;
+        this.backpack = null;
+        return backpack;
     }
 
     public void setFaction(Faction faction) {
@@ -160,7 +174,7 @@ public class Human extends Creature{
     }
 
     public void setKnownHumans(ArrayList<Human> knownHumans) {
-        this.knownHumans = new ArrayList<>(Objects.requireNonNull(knownHumans));
+        this.knownHumans = new HashSet<>(Objects.requireNonNull(knownHumans));
     }
 
     public void setName(Name name) {
