@@ -21,12 +21,12 @@ public class Human extends Creature{
     protected boolean isEyesOpened;
     protected boolean isOnMove;
     protected HumanFaceExpression faceExpression;
-    protected Fact knownFacts;
+    protected ArrayList<Fact> knownFacts;
 
     public Human(String title, LocalDateTime creationTime, String description, Planet birthPlanet,
                  ArrayList<Buff> buffs, Location currentLocation, boolean isAlive,
                  ArrayList<CreatureProperty> properties, CreatureType type, Name name,
-                 ArrayList<Human> knownHumans, Fact knownFacts, boolean isOnMove, boolean isEyesOpened,
+                 ArrayList<Human> knownHumans, ArrayList<Fact> knownFacts, boolean isOnMove, boolean isEyesOpened,
                  Faction faction, HumanFaceExpression faceExpression, double exhaustion, ArrayList<String> equipments,
                  Backpack backpack) {
         super(title, creationTime, description, birthPlanet, buffs, currentLocation, isAlive, properties, type);
@@ -73,7 +73,20 @@ public class Human extends Creature{
         super.interact(object); // TODO implement
     }
 
+    public void talk(String text, String connotation){
+        System.out.printf("%s: %s - %s\n", title, text, connotation);
+    }
 
+    public void realise(Fact fact){
+        knownFacts.add(Objects.requireNonNull(fact));
+        System.out.printf("%s realised: \n", title, fact);
+    }
+
+    public void realise(Fact fact, HumanFaceExpression expression){
+        knownFacts.add(Objects.requireNonNull(fact));
+        System.out.printf("%s realised: \n", title, fact);
+        this.faceExpression = expression;
+    }
 
     // Getters
     public Backpack getBackpack() {
