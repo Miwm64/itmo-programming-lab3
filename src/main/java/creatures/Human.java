@@ -180,4 +180,69 @@ public class Human extends Creature{
     public void setName(Name name) {
         this.name = Objects.requireNonNull(name);
     }
+
+    // Java object methods
+    // Java object methods
+    @Override
+    public String toString() {
+        return super.toString() + String.format(
+                "type: Human\n" +
+                        "name: %s\n" +
+                        "faceExpression: %s\n" +
+                        "exhaustion: %.2f\n" +
+                        "knownHumans: %d humans\n" +
+                        "equipments: %s\n" +
+                        "faction: %s\n" +
+                        "backpack: %s\n" +
+                        "isEyesOpened: %b\n" +
+                        "isOnMove: %b\n" +
+                        "knownFacts: %d facts\n",
+                name,
+                faceExpression,
+                exhaustion,
+                knownHumans != null ? knownHumans.size() : 0,
+                equipments != null ? equipments.toString() : "null",
+                faction != null ? faction.toString() : "null",
+                backpack != null ? backpack.toString() : "null",
+                isEyesOpened,
+                isOnMove,
+                knownFacts != null ? knownFacts.size() : 0
+        );
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Human human = (Human) o;
+
+        return Double.compare(human.exhaustion, exhaustion) == 0 &&
+                isEyesOpened == human.isEyesOpened &&
+                isOnMove == human.isOnMove &&
+                Objects.equals(knownHumans, human.knownHumans) &&
+                Objects.equals(equipments, human.equipments) &&
+                Objects.equals(faction, human.faction) &&
+                Objects.equals(name, human.name) &&
+                Objects.equals(backpack, human.backpack) &&
+                Objects.equals(faceExpression, human.faceExpression) &&
+                Objects.equals(knownFacts, human.knownFacts);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                super.hashCode(),
+                knownHumans,
+                equipments,
+                faction,
+                name,
+                backpack,
+                exhaustion,
+                isEyesOpened,
+                isOnMove,
+                faceExpression,
+                knownFacts
+        );
+    }
 }
