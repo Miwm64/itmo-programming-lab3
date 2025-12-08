@@ -69,6 +69,13 @@ public class Human extends Creature{
         isEyesOpened = false;
     }
 
+    public double recognise(Human human){
+        if (!knownHumans.contains(human)){
+            return 0;
+        }
+        return 1 - (buffs.contains(BuffType.MEMORY_DAMAGE) ? 0.5 : 0) - exhaustion / 1000;
+    }
+
     @Override
     public void interact(WorldObject object) {
         super.interact(object); // TODO implement
@@ -94,6 +101,11 @@ public class Human extends Creature{
         if (object instanceof Human human){
             human.setFaceExpression(HumanFaceExpression.ANGRY);
         }
+    }
+
+    public void move(Location location){
+        this.currentLocation = location;
+        changeExhaustion(5);
     }
 
     // Getters
