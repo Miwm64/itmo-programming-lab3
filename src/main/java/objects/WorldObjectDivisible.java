@@ -36,7 +36,7 @@ public class WorldObjectDivisible extends WorldObject implements Divisible {
             res.addLast(obj);
         }
         if (summ > 100){
-            throw new AssertionError(
+            throw new IllegalArgumentException(
                     "Division input incorrect: sum of percentages exceeds 100%");
         }
         setQuantity(quantity*((100-summ)/100));
