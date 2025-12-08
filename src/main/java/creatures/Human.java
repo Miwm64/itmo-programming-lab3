@@ -3,6 +3,7 @@ package creatures;
 import exceptions.BackpackAlreadyExistsException;
 import locations.Location;
 import objects.Backpack;
+import objects.Equipment;
 import objects.WorldObject;
 import world.Faction;
 import world.Planet;
@@ -14,7 +15,7 @@ import java.util.Objects;
 
 public class Human extends Creature{
     protected HashSet<Human> knownHumans;
-    protected ArrayList<String> equipments; // TODO Objects
+    protected ArrayList<Equipment> equipments; // TODO Objects
     protected Faction faction;
     protected Name name;
     protected Backpack backpack;
@@ -28,7 +29,7 @@ public class Human extends Creature{
                  ArrayList<Buff> buffs, Location currentLocation, boolean isAlive,
                  ArrayList<CreatureProperty> properties, CreatureType type, Name name,
                  HashSet<Human> knownHumans, HashSet<Fact> knownFacts, boolean isOnMove, boolean isEyesOpened,
-                 Faction faction, HumanFaceExpression faceExpression, double exhaustion, ArrayList<String> equipments,
+                 Faction faction, HumanFaceExpression faceExpression, double exhaustion, ArrayList<Equipment> equipments,
                  Backpack backpack) {
         super(title, creationTime, description, birthPlanet, buffs, currentLocation, isAlive, properties, type);
         this.name = name;
@@ -113,7 +114,7 @@ public class Human extends Creature{
         return backpack;
     }
 
-    public ArrayList<String> getEquipments() {
+    public ArrayList<Equipment> getEquipments() {
         return equipments;
     }
 
@@ -163,7 +164,7 @@ public class Human extends Creature{
         setExhaustion(this.exhaustion + change);
     }
 
-    public void setEquipments(ArrayList<String> equipments) {
+    public void setEquipments(ArrayList<Equipment> equipments) {
         this.equipments = new ArrayList<>(Objects.requireNonNull(equipments));
     }
 
