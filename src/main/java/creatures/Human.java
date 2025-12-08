@@ -82,7 +82,7 @@ public class Human extends Creature{
     }
 
     public void talk(String text, String connotation){
-        System.out.printf("%s: %s - %s\n", title, text, connotation);
+        System.out.printf("%s: %s - %s with %s expression\n", title, text, connotation, faceExpression);
     }
 
     public void realise(Fact fact){
@@ -189,11 +189,17 @@ public class Human extends Creature{
         this.knownHumans = new HashSet<>(Objects.requireNonNull(knownHumans));
     }
 
+    public void addKnownHuman(Human human) {
+        this.knownHumans.add(Objects.requireNonNull(human));
+    }
+    public void removeKnownHuman(Human human) {
+        this.knownHumans.remove(Objects.requireNonNull(human));
+    }
+
     public void setName(Name name) {
         this.name = Objects.requireNonNull(name);
     }
 
-    // Java object methods
     // Java object methods
     @Override
     public String toString() {

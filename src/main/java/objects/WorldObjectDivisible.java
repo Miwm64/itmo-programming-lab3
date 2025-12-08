@@ -21,7 +21,7 @@ public class WorldObjectDivisible extends WorldObject implements Divisible {
 
     @Override
     public WorldObjectDivisible divide(double percentageLeft) {
-        return divide(new ArrayList<Double>(List.of(100-percentageLeft))).getFirst();
+        return divide(new ArrayList<>(List.of(100 - percentageLeft))).getFirst();
 
     }
 
