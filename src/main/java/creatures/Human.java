@@ -15,7 +15,7 @@ import java.util.Objects;
 
 public class Human extends Creature{
     protected HashSet<Human> knownHumans;
-    protected ArrayList<Equipment> equipments; // TODO Objects
+    protected ArrayList<Equipment> equipments;
     protected Faction faction;
     protected Name name;
     protected Backpack backpack;
@@ -25,25 +25,186 @@ public class Human extends Creature{
     protected HumanFaceExpression faceExpression;
     protected HashSet<Fact> knownFacts;
 
-    public Human(String title, LocalDateTime creationTime, String description, Planet birthPlanet,
-                 ArrayList<Buff> buffs, Location currentLocation, boolean isAlive,
-                 ArrayList<CreatureProperty> properties, CreatureType type, Name name,
-                 HashSet<Human> knownHumans, HashSet<Fact> knownFacts, boolean isOnMove, boolean isEyesOpened,
-                 Faction faction, HumanFaceExpression faceExpression, double exhaustion, ArrayList<Equipment> equipments,
-                 Backpack backpack) {
-        super(title, creationTime, description, birthPlanet, buffs, currentLocation, isAlive, properties, type);
-        this.name = name;
-        this.knownHumans = knownHumans;
-        this.knownFacts = knownFacts;
-        this.isOnMove = isOnMove;
-        this.isEyesOpened = isEyesOpened;
-        this.faction = faction;
-        this.faceExpression = faceExpression;
-        this.exhaustion = exhaustion;
-        this.equipments = equipments;
-        this.backpack = backpack;
+    // Constructor for builder
+    private Human(Builder builder) {
+        super(builder.title, builder.creationTime, builder.description, builder.type, builder.properties, builder.isAlive, builder.currentLocation, builder.buffs, builder.birthPlanet);
+        this.name = builder.name;
+        this.knownHumans = builder.knownHumans;
+        this.knownFacts = builder.knownFacts;
+        this.isOnMove = builder.isOnMove;
+        this.isEyesOpened = builder.isEyesOpened;
+        this.faction = builder.faction;
+        this.faceExpression = builder.faceExpression;
+        this.exhaustion = builder.exhaustion;
+        this.equipments = builder.equipments;
+        this.backpack = builder.backpack;
     }
-    // TODO builder pattern
+
+    // Builder class
+    public static class Builder {
+        // Creature fields (copied)
+        private String title;
+        private LocalDateTime creationTime;
+        private String description = "";
+        private Planet birthPlanet;
+        private ArrayList<Buff> buffs = new ArrayList<>();
+        private Location currentLocation = null;
+        private boolean isAlive = true;
+        private ArrayList<CreatureProperty> properties = new ArrayList<>();
+        private CreatureType type;
+
+        // Human fields
+        private Name name;
+        private HashSet<Human> knownHumans = new HashSet<>();
+        private HashSet<Fact> knownFacts = new HashSet<>();
+        private boolean isOnMove = false;
+        private boolean isEyesOpened = true;
+        private Faction faction = null;
+        private HumanFaceExpression faceExpression = HumanFaceExpression.CALM;
+        private double exhaustion = 0.0;
+        private ArrayList<Equipment> equipments = new ArrayList<>();
+        private Backpack backpack = null;
+
+        public Builder(String title, LocalDateTime creationTime, Planet birthPlanet,
+                       CreatureType type, Name name) {
+            this.title = title;
+            this.creationTime = creationTime;
+            this.birthPlanet = birthPlanet;
+            this.type = type;
+            this.name = name;
+        }
+
+        // Creature field setters
+        public Builder birthPlanet(Planet planet){
+            this.birthPlanet = planet;
+            return this;
+        }
+
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder buffs(ArrayList<Buff> buffs) {
+            this.buffs = buffs;
+            return this;
+        }
+
+        public Builder addBuff(Buff buff) {
+            this.buffs.add(buff);
+            return this;
+        }
+
+        public Builder currentLocation(Location currentLocation) {
+            this.currentLocation = currentLocation;
+            return this;
+        }
+
+        public Builder isAlive(boolean isAlive) {
+            this.isAlive = isAlive;
+            return this;
+        }
+
+        public Builder properties(ArrayList<CreatureProperty> properties) {
+            this.properties = properties;
+            return this;
+        }
+
+        public Builder addProperty(CreatureProperty property) {
+            this.properties.add(property);
+            return this;
+        }
+
+        // Human field setters
+        public Builder name(Name name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder knownHumans(HashSet<Human> knownHumans) {
+            this.knownHumans = knownHumans;
+            return this;
+        }
+
+        public Builder addKnownHuman(Human human) {
+            this.knownHumans.add(human);
+            return this;
+        }
+
+        public Builder knownFacts(HashSet<Fact> knownFacts) {
+            this.knownFacts = knownFacts;
+            return this;
+        }
+
+        public Builder addKnownFact(Fact fact) {
+            this.knownFacts.add(fact);
+            return this;
+        }
+
+        public Builder isOnMove(boolean isOnMove) {
+            this.isOnMove = isOnMove;
+            return this;
+        }
+
+        public Builder isEyesOpened(boolean isEyesOpened) {
+            this.isEyesOpened = isEyesOpened;
+            return this;
+        }
+
+        public Builder faction(Faction faction) {
+            this.faction = faction;
+            return this;
+        }
+
+        public Builder faceExpression(HumanFaceExpression faceExpression) {
+            this.faceExpression = faceExpression;
+            return this;
+        }
+
+        public Builder exhaustion(double exhaustion) {
+            if (exhaustion < 0 || exhaustion > 100) {
+                throw new IllegalArgumentException("Exhaustion must be between 0 and 100");
+            }
+            this.exhaustion = exhaustion;
+            return this;
+        }
+
+        public Builder equipments(ArrayList<Equipment> equipments) {
+            this.equipments = equipments;
+            return this;
+        }
+
+        public Builder addEquipment(Equipment equipment) {
+            this.equipments.add(equipment);
+            return this;
+        }
+
+        public Builder backpack(Backpack backpack) {
+            this.backpack = backpack;
+            return this;
+        }
+
+        public Human build() {
+            // Validate required fields
+            if (title == null || title.isEmpty()) {
+                throw new IllegalStateException("Title is required");
+            }
+            if (creationTime == null) {
+                throw new IllegalStateException("Creation time is required");
+            }
+            if (birthPlanet == null) {
+                throw new IllegalStateException("Birth planet is required");
+            }
+            if (type == null) {
+                throw new IllegalStateException("Creature type is required");
+            }
+            if (name == null) {
+                throw new IllegalStateException("Name is required");
+            }
+
+            return new Human(this);
+        }
+    }
 
     public void stumble(boolean fall) {
         changeExhaustion(1);
