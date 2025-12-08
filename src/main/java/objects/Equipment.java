@@ -20,8 +20,9 @@ public class Equipment extends WorldObject{
         this.durability = durability;
     }
 
-    public void useWith(WorldObject object) {
-        // TODO implement
+    public boolean useWith(WorldObject object) {
+        System.out.printf("%s equipment tried to interact with %s\n", type.toString(), object.title);
+        return true;
     }
 
     // Getters

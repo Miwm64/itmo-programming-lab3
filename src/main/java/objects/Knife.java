@@ -20,7 +20,7 @@ public class Knife extends Equipment {
         super(title, creationTime, description, EquipmentType.WEAPON, durability);
     }
 
-    public boolean stab(WorldObject object) {
+    public boolean useWith(WorldObject object) {
         if (durability == 0){
             return false;
         }
