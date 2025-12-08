@@ -1,10 +1,13 @@
 package locations;
 
 import creatures.Buff;
+import creatures.BuffType;
 import util.Pair;
 
+import java.util.Objects;
+
 public class WaterSource {
-    private double isSafeToDrink;
+    private final double isSafeToDrink; // 1 - safe, 0 - not safe
     private double waterLeftAmount;
 
     public WaterSource(double isSafeToDrink, double waterLeftAmount){
@@ -12,11 +15,14 @@ public class WaterSource {
         this.waterLeftAmount = waterLeftAmount;
     }
 
-    public util.Pair<Double, Buff> getWater(double requestedAmount) {
+    public Pair<Double, Buff> getWater(double requestedAmount) {
         double givenAmount = Math.min(waterLeftAmount, requestedAmount);
         waterLeftAmount -= givenAmount;
-        // TODO add buff
-        return new Pair<>(givenAmount, null);
+        Buff buff = null;
+        if (isSafeToDrink < Math.random()){
+            buff = new Buff(BuffType.POISON, 1-isSafeToDrink*100);
+        }
+        return new Pair<>(givenAmount, buff);
     }
 
     // Getters
@@ -47,8 +53,6 @@ public class WaterSource {
 
     @Override
     public int hashCode() {
-        return java.util.Objects.hash(isSafeToDrink, waterLeftAmount);
+        return Objects.hash(isSafeToDrink, waterLeftAmount);
     }
-
-
 }
