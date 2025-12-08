@@ -4,6 +4,7 @@ import exceptions.BackpackAlreadyExistsException;
 import locations.Location;
 import objects.Backpack;
 import objects.Equipment;
+import objects.Tree;
 import objects.WorldObject;
 import world.Faction;
 import world.Planet;
@@ -234,7 +235,10 @@ public class Human extends Creature{
 
     @Override
     public void interact(WorldObject object) {
-        super.interact(object); // TODO implement
+        if (object instanceof Tree tree){
+            changeExhaustion(-1);
+            System.out.printf("%s leaned against %s\n", title, tree.getTitle());
+        }
     }
 
     public void talk(String text, String connotation){
@@ -252,8 +256,9 @@ public class Human extends Creature{
         this.faceExpression = expression;
     }
 
-    public void lookAt(WorldObject object){
-        System.out.printf("%s looks at %s\n", title, object.getTitle());
+    public void lookAt(WorldObject object, Fact thought){
+        System.out.printf("%s looks at %s with thought:'%s'\n", title, object.getTitle(), thought.text);
+        knownFacts.add(thought);
         if (object instanceof Human human){
             human.setFaceExpression(HumanFaceExpression.ANGRY);
         }

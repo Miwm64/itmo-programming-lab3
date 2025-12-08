@@ -5,5 +5,6 @@ public enum HumanFaceExpression {
     ANGRY,
     CALM,
     CRYING,
-    HAPPY
+    HAPPY,
+    SHOCKED, CONCERN
 }

@@ -3,6 +3,7 @@ package world;
 import creatures.*;
 import locations.*;
 import objects.*;
+import util.Pair;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -35,7 +36,8 @@ public class MyWorld extends World {
                 LocalDateTime.of(2500, 5, 3, 0, 0))
                 .faction(Faction.BETA_COLONY)
                 .birthPlanet(betaColony)
-                .currentLocation(currLocation).build();
+                .currentLocation(currLocation)
+                .build();
 
         Human dubauer = new Human.Builder("Ensign Dubauer",
                 new Name("", "", "Dubauer"),
@@ -66,9 +68,13 @@ public class MyWorld extends World {
 
         System.out.println(forest.getThickness());
         vorKnife.cutThrough(forest);
+        aralVorkosigan.changeExhaustion(5);
         System.out.println(forest.getThickness());
 
         WaterLocation waterLocation = new WaterLocation("Stream", "");
+        WaterSource waterSource = new WaterSource(0.9, 10000000);
+        waterLocation.setWaterSource(waterSource);
+
         HumanEngagementSimulator.lead(aralVorkosigan, new ArrayList<>(Arrays.asList(cordeliaNaismith, dubauer)),
                 waterLocation);
         waterLocation.addObject(new Stone());
@@ -80,11 +86,18 @@ public class MyWorld extends World {
 
         for (WorldObject obj : waterLocation.getObjects()){
             if (obj instanceof Shineable shineable){
-                shineable.shine();
+                Sunlight sunlight = new Sunlight();
+                sunlight.shineUpon(shineable);
             }
         }
 
         Cloud cloud = new Cloud("Cloud", "", 10);
+        cordeliaNaismith.setFaceExpression(HumanFaceExpression.HAPPY);
+        cordeliaNaismith.realise(new Fact("Beautiful gas creatures in clouds", cordeliaNaismith));
+        cordeliaNaismith.setOnMove(false);
+
+        aralVorkosigan.setFaceExpression(HumanFaceExpression.CALM);
+        aralVorkosigan.setOnMove(false);
         for (int i = 0; i < 10; ++i){
             cloud.addObject(new GasFilledCreature.Builder("" + i, currentConditions.time()).build());
         }
@@ -98,5 +111,34 @@ public class MyWorld extends World {
         }
         System.out.println(cordeliaNaismith.getBuffs());
         System.out.println(aralVorkosigan.getBuffs());
+
+        Pair<Double, Buff> drinkResult = waterLocation.getWater(1);
+        if (drinkResult.second != null){
+            cordeliaNaismith.addBuff(drinkResult.second);
+            aralVorkosigan.addBuff(drinkResult.second);
+            dubauer.addBuff(drinkResult.second);
+        }
+
+        cordeliaNaismith.sit(1);
+        aralVorkosigan.sit(1);
+        dubauer.sit(1);
+
+        Tree leaningTree = new Tree("Baobab", currentConditions.time(), "", 15.0);
+        waterLocation.addObject(leaningTree);
+        aralVorkosigan.interact(leaningTree);
+
+        cordeliaNaismith.lookAt(aralVorkosigan, new Fact("Vorkosigan is tired", cordeliaNaismith));
+        cordeliaNaismith.realise(new Fact("Vorkosigan is the Butcher of Komarr", aralVorkosigan),
+                HumanFaceExpression.CONCERN);
+        cordeliaNaismith.talk("I know who you are. Vorkosigan, the Butcher of Komarr.", "accusing");
+        aralVorkosigan.openEyes();
+        aralVorkosigan.setFaceExpression(HumanFaceExpression.SHOCKED);
+        aralVorkosigan.lookAt(cordeliaNaismith,
+                new Fact("Cordeila knows who I am", aralVorkosigan));
+
+        aralVorkosigan.talk("What do you know about Komarr?",
+                "tone added ignorant betan");
+
+        cordeliaNaismith.talk("Just what everyone knows", "");
     }
 }
