@@ -38,14 +38,13 @@ public class Mountain extends Location {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || !(o instanceof Mountain)) return false;
 
-        Mountain mountain = (Mountain) o;
-        return super.equals(o) && height == mountain.height;
+        return super.equals(o);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), height);
+        return super.hashCode();
     }
 }

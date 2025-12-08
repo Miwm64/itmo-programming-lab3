@@ -49,14 +49,13 @@ public class Cloud extends Location {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || !(o instanceof Cloud)) return false;
 
-        Cloud cloud = (Cloud) o;
-        return super.equals(o) && thickness == cloud.thickness;
+        return super.equals(o);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), thickness);
+        return super.hashCode();
     }
 }

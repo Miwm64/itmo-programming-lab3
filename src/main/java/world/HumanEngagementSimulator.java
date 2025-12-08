@@ -6,11 +6,15 @@ import creatures.Human;
 import creatures.HumanFaceExpression;
 import locations.Location;
 
+import java.util.ArrayList;
+
 public class HumanEngagementSimulator {
-    static void lead(Human leader, Human human, Location location){
+    static void lead(Human leader, ArrayList<Human> humans, Location location){
         leader.move(location);
         leader.changeExhaustion(5);
-        human.move(location);
+        for (var human : humans){
+            human.move(location);
+        }
     }
 
     static void avoid(Human initiator, Human human){

@@ -53,4 +53,17 @@ public class Knife extends Equipment {
         return String.format("type: Knife\ntitle: %s\ncreationTime: %s\ndescription: %s\nType: %s\nDurability:%d",
                 title, creationTime, description, type.toString(), durability);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || !(o instanceof Knife)) return false;
+
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

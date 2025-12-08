@@ -1,5 +1,6 @@
 package locations;
 
+import objects.Rill;
 import objects.WorldObject;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -52,14 +53,13 @@ public class Forest extends Location {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || !(o instanceof Forest)) return false;
 
-        Forest forest = (Forest) o;
-        return super.equals(o) && thickness == forest.thickness && height == forest.height;
+        return super.equals(o);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), thickness, height);
+        return super.hashCode();
     }
 }

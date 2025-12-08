@@ -1,5 +1,8 @@
+import world.MyWorld;
+
 public class Main {
     public static void main(String[] args){
-        return;
+        var scenario = new MyWorld();
+        scenario.simulateScenario();
     }
 }

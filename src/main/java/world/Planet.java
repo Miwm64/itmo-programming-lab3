@@ -10,8 +10,8 @@ public class Planet {
     protected Faction faction;
     protected String title;
 
-    public Planet(WormholeStatus wormholeStatus, PlanetType planetType,
-                  Faction faction, String title) {
+    public Planet(String title, WormholeStatus wormholeStatus, PlanetType planetType,
+                  Faction faction) {
         this.wormholeStatus = Objects.requireNonNull(wormholeStatus);
         this.planetType = Objects.requireNonNull(planetType);
         this.faction = Objects.requireNonNull(faction);

@@ -1,5 +1,6 @@
 package locations;
 
+import objects.Backpack;
 import objects.Rill;
 import objects.WorldObject;
 
@@ -60,17 +61,15 @@ public class Location {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || !(o instanceof Location location)) return false;
 
-        Location location = (Location) o;
-        return Objects.equals(name, location.name) &&
-                type == location.type &&
-                Objects.equals(description, location.description) &&
-                Objects.equals(objects, location.objects);
+        return Objects.equals(name, location.name)
+                && Objects.equals(description, location.description)
+                && type == location.type;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, type, description, objects);
+        return Objects.hash(name, type, description);
     }
 }

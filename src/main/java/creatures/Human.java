@@ -51,7 +51,7 @@ public class Human extends Creature{
         private Location currentLocation = null;
         private boolean isAlive = true;
         private ArrayList<CreatureProperty> properties = new ArrayList<>();
-        private CreatureType type;
+        private CreatureType type = CreatureType.HUMAN;
 
         // Human fields
         private Name name;
@@ -65,13 +65,10 @@ public class Human extends Creature{
         private ArrayList<Equipment> equipments = new ArrayList<>();
         private Backpack backpack = null;
 
-        public Builder(String title, LocalDateTime creationTime, Planet birthPlanet,
-                       CreatureType type, Name name) {
-            this.title = title;
-            this.creationTime = creationTime;
-            this.birthPlanet = birthPlanet;
-            this.type = type;
-            this.name = name;
+        public Builder(String title, Name name, LocalDateTime creationTime) {
+            this.title = Objects.requireNonNull(title);
+            this.creationTime = Objects.requireNonNull(creationTime);
+            this.name = Objects.requireNonNull(name);
         }
 
         // Creature field setters
@@ -192,9 +189,6 @@ public class Human extends Creature{
             if (creationTime == null) {
                 throw new IllegalStateException("Creation time is required");
             }
-            if (birthPlanet == null) {
-                throw new IllegalStateException("Birth planet is required");
-            }
             if (type == null) {
                 throw new IllegalStateException("Creature type is required");
             }
@@ -267,6 +261,7 @@ public class Human extends Creature{
 
     public void move(Location location){
         this.currentLocation = location;
+        isOnMove = true;
         changeExhaustion(5);
     }
 
@@ -397,32 +392,13 @@ public class Human extends Creature{
 
         Human human = (Human) o;
 
-        return Double.compare(human.exhaustion, exhaustion) == 0 &&
-                isEyesOpened == human.isEyesOpened &&
-                isOnMove == human.isOnMove &&
-                Objects.equals(knownHumans, human.knownHumans) &&
-                Objects.equals(equipments, human.equipments) &&
-                Objects.equals(faction, human.faction) &&
-                Objects.equals(name, human.name) &&
-                Objects.equals(backpack, human.backpack) &&
-                Objects.equals(faceExpression, human.faceExpression) &&
-                Objects.equals(knownFacts, human.knownFacts);
+        return super.equals(o);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                super.hashCode(),
-                knownHumans,
-                equipments,
-                faction,
-                name,
-                backpack,
-                exhaustion,
-                isEyesOpened,
-                isOnMove,
-                faceExpression,
-                knownFacts
+                super.hashCode()
         );
     }
 }

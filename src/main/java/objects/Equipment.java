@@ -57,15 +57,14 @@ public class Equipment extends WorldObject{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || !(o instanceof Equipment)) return false;
 
-        return super.equals(o) && Objects.equals(type, ((Equipment) o).type) &&
-                Objects.equals(durability, ((Equipment) o).durability);
+        return super.equals(o) && type == ((Equipment) o).type;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getClass(), title, creationTime, description, type, durability);
+        return super.hashCode();
     }
 
 }

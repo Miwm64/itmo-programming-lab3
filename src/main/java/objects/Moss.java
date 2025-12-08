@@ -33,13 +33,13 @@ public class Moss extends WorldObject implements Shineable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || !(o instanceof Moss)) return false;
 
         return super.equals(o);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getClass(), title, creationTime, description);
+        return super.hashCode();
     }
 }

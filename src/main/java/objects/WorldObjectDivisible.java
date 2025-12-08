@@ -74,15 +74,13 @@ public class WorldObjectDivisible extends WorldObject implements Divisible {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        WorldObjectDivisible that = (WorldObjectDivisible) o;
-        return Objects.equals(title, that.title) && Objects.equals(creationTime, that.creationTime)
-                &&  Objects.equals(description, that.description)
-                &&  quantity == that.quantity;
+        if (o == null || !(o instanceof WorldObjectDivisible)) return false;
+
+        return super.equals(o);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getClass(), title, creationTime, description, quantity);
+        return super.hashCode();
     }
 }

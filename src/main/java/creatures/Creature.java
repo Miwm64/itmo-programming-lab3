@@ -192,16 +192,11 @@ public class Creature extends WorldObject {
 
         Creature creature = (Creature) o;
         return super.equals(o) && type == creature.type &&
-                isAlive == creature.isAlive &&
-                Objects.equals(properties, creature.properties) &&
-                Objects.equals(buffs, creature.buffs) &&
-                Objects.equals(birthPlanet, creature.birthPlanet) &&
-                Objects.equals(currentLocation, creature.currentLocation);
+                Objects.equals(birthPlanet, creature.birthPlanet);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getClass(), title, creationTime, description,
-                birthPlanet, buffs, currentLocation, isAlive, type, properties);
+        return Objects.hash(super.hashCode(), birthPlanet, type);
     }
 }

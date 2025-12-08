@@ -69,14 +69,15 @@ public class WorldObject implements Cloneable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || !(o instanceof WorldObject)) return false;
+
         WorldObject that = (WorldObject) o;
-        return Objects.equals(title, that.title) && Objects.equals(creationTime,
-                that.creationTime) &&  Objects.equals(description, that.description);
+        return Objects.equals(title, that.title) &&
+                Objects.equals(creationTime, that.creationTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getClass(), title, creationTime, description);
+        return Objects.hash(title, creationTime);
     }
 }

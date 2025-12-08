@@ -47,12 +47,11 @@ public class WaterSource {
         if (o == null || getClass() != o.getClass()) return false;
 
         WaterSource that = (WaterSource) o;
-        return Double.compare(that.isSafeToDrink, isSafeToDrink) == 0 &&
-                Double.compare(that.waterLeftAmount, waterLeftAmount) == 0;
+        return Double.compare(that.isSafeToDrink, isSafeToDrink) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(isSafeToDrink, waterLeftAmount);
+        return Objects.hash(isSafeToDrink);
     }
 }

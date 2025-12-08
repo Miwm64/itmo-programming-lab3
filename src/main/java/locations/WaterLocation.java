@@ -44,14 +44,13 @@ public class WaterLocation extends Location{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || !(o instanceof WaterLocation)) return false;
 
-        WaterLocation that = (WaterLocation) o;
-        return super.equals(o) && Objects.equals(waterSource, that.waterSource);
+        return super.equals(o);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), waterSource);
+        return super.hashCode();
     }
 }
