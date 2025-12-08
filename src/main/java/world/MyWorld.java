@@ -8,7 +8,6 @@ import util.Pair;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 public class MyWorld extends World {
     protected Conditions currentConditions = new Conditions(Weather.CLOUDY, LocalDateTime.of(2539, 4, 2, 13, 42), Effect.FOG);
@@ -67,7 +66,7 @@ public class MyWorld extends World {
         System.out.println(forest.getHeight());
 
         System.out.println(forest.getThickness());
-        vorKnife.cutThrough(forest);
+        boolean success = vorKnife.cutThrough(forest);
         aralVorkosigan.changeExhaustion(5);
         System.out.println(forest.getThickness());
 

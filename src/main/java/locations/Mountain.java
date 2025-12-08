@@ -2,7 +2,6 @@ package locations;
 
 import objects.WorldObject;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Mountain extends Location {
     protected double height;
@@ -38,7 +37,7 @@ public class Mountain extends Location {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof Mountain)) return false;
+        if (!(o instanceof Mountain)) return false;
 
         return super.equals(o);
     }

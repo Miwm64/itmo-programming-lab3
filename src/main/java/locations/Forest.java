@@ -1,9 +1,7 @@
 package locations;
 
-import objects.Rill;
 import objects.WorldObject;
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Forest extends Location {
     protected double thickness;
@@ -53,7 +51,7 @@ public class Forest extends Location {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof Forest)) return false;
+        if (!(o instanceof Forest)) return false;
 
         return super.equals(o);
     }

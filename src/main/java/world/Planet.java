@@ -1,7 +1,5 @@
 package world;
 
-import objects.WorldObject;
-
 import java.util.Objects;
 
 public class Planet {

@@ -24,15 +24,15 @@ public class GasFilledCreature extends Creature{
 
     // Builder class
     public static class Builder {
-        private String title;
-        private LocalDateTime creationTime;
+        private final String title;
+        private final LocalDateTime creationTime;
         private String description = "";
         private Planet birthPlanet;
         private ArrayList<Buff> buffs = new ArrayList<>();
         private Location currentLocation = null;
         private boolean isAlive = true;
         private ArrayList<CreatureProperty> properties = new ArrayList<>();
-        private CreatureType type = CreatureType.INSECT;
+        private final CreatureType type = CreatureType.INSECT;
 
         public Builder(String title, LocalDateTime creationTime) {
             this.title = Objects.requireNonNull(title);

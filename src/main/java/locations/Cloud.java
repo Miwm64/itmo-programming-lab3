@@ -3,7 +3,6 @@ package locations;
 import objects.WorldObject;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Objects;
 
 public class Cloud extends Location {
     protected double thickness;
@@ -49,7 +48,7 @@ public class Cloud extends Location {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof Cloud)) return false;
+        if (!(o instanceof Cloud)) return false;
 
         return super.equals(o);
     }

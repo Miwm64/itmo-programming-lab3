@@ -44,15 +44,15 @@ public class Human extends Creature{
     // Builder class
     public static class Builder {
         // Creature fields (copied)
-        private String title;
-        private LocalDateTime creationTime;
+        private final String title;
+        private final LocalDateTime creationTime;
         private String description = "";
         private Planet birthPlanet;
         private ArrayList<Buff> buffs = new ArrayList<>();
         private Location currentLocation = null;
         private boolean isAlive = true;
         private ArrayList<CreatureProperty> properties = new ArrayList<>();
-        private CreatureType type = CreatureType.HUMAN;
+        private final CreatureType type = CreatureType.HUMAN;
 
         // Human fields
         private Name name;
@@ -247,12 +247,12 @@ public class Human extends Creature{
 
     public void realise(Fact fact){
         knownFacts.add(Objects.requireNonNull(fact));
-        System.out.printf("%s realised: \n", title, fact);
+        System.out.printf("%s realised %s: \n", title, fact);
     }
 
     public void realise(Fact fact, HumanFaceExpression expression){
         knownFacts.add(Objects.requireNonNull(fact));
-        System.out.printf("%s realised: \n", title, fact);
+        System.out.printf("%s realised: %s\n", title, fact);
         this.faceExpression = expression;
     }
 

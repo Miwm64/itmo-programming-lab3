@@ -39,15 +39,15 @@ public class Creature extends WorldObject {
 
     // Builder class
     public static class Builder {
-        private String title;
-        private LocalDateTime creationTime;
+        private final String title;
+        private final LocalDateTime creationTime;
         private String description = "";
         private Planet birthPlanet;
         private ArrayList<Buff> buffs = new ArrayList<>();
         private Location currentLocation = null;
         private boolean isAlive = true;
         private ArrayList<CreatureProperty> properties = new ArrayList<>();
-        private CreatureType type;
+        private final CreatureType type;
 
         public Builder(String title, LocalDateTime creationTime, CreatureType type) {
             this.title = Objects.requireNonNull(title);

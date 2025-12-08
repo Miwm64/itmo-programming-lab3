@@ -2,7 +2,6 @@ package objects;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class Backpack extends WorldObject{
@@ -67,7 +66,7 @@ public class Backpack extends WorldObject{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof Backpack)) return false;
+        if (!(o instanceof Backpack)) return false;
 
         return super.equals(o);
     }

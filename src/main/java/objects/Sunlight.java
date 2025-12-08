@@ -33,7 +33,7 @@ public class Sunlight extends WorldObject {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof Sunlight)) return false;
+        if (!(o instanceof Sunlight)) return false;
 
         return super.equals(o);
     }

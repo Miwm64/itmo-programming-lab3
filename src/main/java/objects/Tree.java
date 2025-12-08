@@ -1,7 +1,6 @@
 package objects;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class Tree extends WorldObject implements Shineable{
     protected double height; // height in meters
@@ -46,7 +45,7 @@ public class Tree extends WorldObject implements Shineable{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof Tree)) return false;
+        if (!(o instanceof Tree)) return false;
 
         return super.equals(o);
     }

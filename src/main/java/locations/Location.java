@@ -1,7 +1,5 @@
 package locations;
 
-import objects.Backpack;
-import objects.Rill;
 import objects.WorldObject;
 
 import java.util.ArrayList;
@@ -61,7 +59,7 @@ public class Location {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof Location location)) return false;
+        if (!(o instanceof Location location)) return false;
 
         return Objects.equals(name, location.name)
                 && Objects.equals(description, location.description)

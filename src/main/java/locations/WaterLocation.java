@@ -2,10 +2,8 @@ package locations;
 
 import creatures.Buff;
 import objects.WorldObject;
-import util.Pair;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class WaterLocation extends Location{
     protected WaterSource waterSource;
@@ -44,7 +42,7 @@ public class WaterLocation extends Location{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof WaterLocation)) return false;
+        if (!(o instanceof WaterLocation)) return false;
 
         return super.equals(o);
     }

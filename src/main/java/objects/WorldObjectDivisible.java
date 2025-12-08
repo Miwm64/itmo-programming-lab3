@@ -2,9 +2,7 @@ package objects;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 public class WorldObjectDivisible extends WorldObject implements Divisible {
     protected double quantity;
@@ -74,7 +72,7 @@ public class WorldObjectDivisible extends WorldObject implements Divisible {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof WorldObjectDivisible)) return false;
+        if (!(o instanceof WorldObjectDivisible)) return false;
 
         return super.equals(o);
     }

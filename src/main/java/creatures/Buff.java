@@ -1,8 +1,8 @@
 package creatures;
 
 public class Buff {
-    public BuffType type;
-    public double strength;
+    public final BuffType type;
+    public final double strength;
 
     public Buff(BuffType type, double strength){
         this.type = type;

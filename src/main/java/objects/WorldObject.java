@@ -69,7 +69,7 @@ public class WorldObject implements Cloneable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof WorldObject)) return false;
+        if (!(o instanceof WorldObject)) return false;
 
         WorldObject that = (WorldObject) o;
         return Objects.equals(title, that.title) &&

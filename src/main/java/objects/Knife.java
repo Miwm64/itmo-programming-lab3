@@ -57,7 +57,7 @@ public class Knife extends Equipment {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof Knife)) return false;
+        if (!(o instanceof Knife)) return false;
 
         return super.equals(o);
     }

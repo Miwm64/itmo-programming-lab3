@@ -1,7 +1,6 @@
 package objects;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class Stone extends WorldObject implements Shineable{
     // Constructors
@@ -33,7 +32,7 @@ public class Stone extends WorldObject implements Shineable{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof Stone)) return false;
+        if (!(o instanceof Stone)) return false;
 
         return super.equals(o);
     }

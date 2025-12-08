@@ -1,8 +1,6 @@
 package objects;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Objects;
 
 public class Equipment extends WorldObject{
     protected EquipmentType type;
@@ -57,7 +55,7 @@ public class Equipment extends WorldObject{
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof Equipment)) return false;
+        if (!(o instanceof Equipment)) return false;
 
         return super.equals(o) && type == ((Equipment) o).type;
     }

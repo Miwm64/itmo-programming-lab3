@@ -1,7 +1,6 @@
 package objects;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class Rill extends WorldObject implements Shineable {
     // Constructors
@@ -33,7 +32,7 @@ public class Rill extends WorldObject implements Shineable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof Rill)) return false;
+        if (!(o instanceof Rill)) return false;
 
         return super.equals(o);
     }
