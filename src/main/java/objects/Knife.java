@@ -1,5 +1,12 @@
 package objects;
 
+import creatures.Buff;
+import creatures.BuffType;
+import creatures.Creature;
+import locations.Forest;
+import locations.Location;
+import locations.LocationType;
+
 import java.time.LocalDateTime;
 
 public class Knife extends Equipment {
@@ -12,23 +19,30 @@ public class Knife extends Equipment {
                      int durability){
         super(title, creationTime, description, EquipmentType.WEAPON, durability);
     }
-/*
-    public void useWith(WorldObject object) {
-        // TODO implement
-    }
-*/
-/*
-    public void stab(WorldObject object) {
-        // TODO implement
-    }
-*/
-/*
-    public void cutThrough(WorldObject object) {
-        // TODO implement
-    }
-*/
-    // Java object methods
 
+    public boolean stab(WorldObject object) {
+        if (durability == 0){
+            return false;
+        }
+        durability--;
+        if (object instanceof Creature creature){
+            creature.addBuff(new Buff(BuffType.WOUND, 20));
+        }
+        return true;
+    }
+
+
+    public boolean cutThrough(Location location) {
+        if (durability == 0 || location.getType() == LocationType.CLOUD) {
+            return false;
+        }
+        if (location instanceof Forest forest){
+            forest.setThickness(forest.getThickness()*0.75);
+        }
+        return true;
+    }
+
+    // Java object methods
     @Override
     public Knife clone() {
         return (Knife) super.clone();
