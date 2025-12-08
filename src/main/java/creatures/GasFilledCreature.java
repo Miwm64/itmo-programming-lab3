@@ -32,12 +32,11 @@ public class GasFilledCreature extends Creature{
         private Location currentLocation = null;
         private boolean isAlive = true;
         private ArrayList<CreatureProperty> properties = new ArrayList<>();
-        private CreatureType type;
+        private CreatureType type = CreatureType.INSECT;
 
-        public Builder(String title, LocalDateTime creationTime, CreatureType type) {
+        public Builder(String title, LocalDateTime creationTime) {
             this.title = Objects.requireNonNull(title);
             this.creationTime = Objects.requireNonNull(creationTime);
-            this.type = type;
         }
 
         public GasFilledCreature.Builder birthPlanet(Planet planet){

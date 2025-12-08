@@ -1,11 +1,8 @@
 package world;
 
 import creatures.*;
-import locations.Forest;
-import locations.Location;
-import locations.Mountain;
-import objects.Backpack;
-import objects.WorldObjectDivisible;
+import locations.*;
+import objects.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -24,12 +21,14 @@ public class MyWorld extends World {
 
         ArrayList<String> nicks = new ArrayList<>();
         nicks.add("Butcher of Komarr");
+        Knife vorKnife = new Knife(100);
         Human aralVorkosigan = new Human.Builder("Vorkosigan",
                 new Name("Aral", "Xav", "Vorkosigan", nicks),
                 LocalDateTime.of(2497, 7, 18, 0, 0))
                 .faction(Faction.BARRAYARAN_IMPERIUM)
                 .birthPlanet(barrayar)
-                .currentLocation(currLocation).build();
+                .currentLocation(currLocation)
+                .addEquipment(vorKnife).build();
 
         Human cordeliaNaismith = new Human.Builder("Cordelia",
                 new Name("Cordelia", "", "Naismith", new ArrayList<>()),
@@ -45,7 +44,7 @@ public class MyWorld extends World {
                 .knownHumans(new java.util.HashSet<>(Arrays.asList(cordeliaNaismith))).build();
 
         WorldObjectDivisible meagerSpoils = new WorldObjectDivisible("Meager spoils",
-                LocalDateTime.now(), "from camp", 100);
+                currentConditions.time(), "from camp", 100);
 
         WorldObjectDivisible meagerSpoils2 = meagerSpoils.divide(50);
         aralVorkosigan.wearBackpack(new Backpack());
@@ -59,5 +58,45 @@ public class MyWorld extends World {
         HumanEngagementSimulator.hold(cordeliaNaismith, dubauer);
         HumanEngagementSimulator.avoid(dubauer, aralVorkosigan);
         System.out.println(dubauer.recognise(cordeliaNaismith));
+
+        Forest forest = (Forest) aralVorkosigan.getCurrentLocation();
+        System.out.println(forest.getHeight());
+        forest.setHeight(forest.getHeight()+100);
+        System.out.println(forest.getHeight());
+
+        System.out.println(forest.getThickness());
+        vorKnife.cutThrough(forest);
+        System.out.println(forest.getThickness());
+
+        WaterLocation waterLocation = new WaterLocation("Stream", "");
+        HumanEngagementSimulator.lead(aralVorkosigan, new ArrayList<>(Arrays.asList(cordeliaNaismith, dubauer)),
+                waterLocation);
+        waterLocation.addObject(new Stone());
+        waterLocation.addObject(new Stone());
+        waterLocation.addObject(new Stone());
+        waterLocation.addObject(new Moss());
+        waterLocation.addObject(new Rill());
+        waterLocation.addObject(new Stone());
+
+        for (WorldObject obj : waterLocation.getObjects()){
+            if (obj instanceof Shineable shineable){
+                shineable.shine();
+            }
+        }
+
+        Cloud cloud = new Cloud("Cloud", "", 10);
+        for (int i = 0; i < 10; ++i){
+            cloud.addObject(new GasFilledCreature.Builder("" + i, currentConditions.time()).build());
+        }
+        ArrayList<WorldObject> creatures = cloud.getObjects();
+
+        for (var c : creatures){
+            if (c instanceof GasFilledCreature g){
+                g.interact(cordeliaNaismith);
+                g.interact(aralVorkosigan);
+            }
+        }
+        System.out.println(cordeliaNaismith.getBuffs());
+        System.out.println(aralVorkosigan.getBuffs());
     }
 }

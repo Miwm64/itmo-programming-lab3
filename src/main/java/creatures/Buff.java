@@ -8,4 +8,9 @@ public class Buff {
         this.type = type;
         this.strength = strength;
     }
+
+    @Override
+    public String toString() {
+        return String.format("type: Buff\ntype: %s\n strength: %.2f", type, strength);
+    }
 }
