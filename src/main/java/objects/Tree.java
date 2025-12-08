@@ -47,7 +47,7 @@ public class Tree extends WorldObject implements Shineable{
         if (this == o) return true;
         if (!(o instanceof Tree)) return false;
 
-        return super.equals(o);
+        return super.equals(o) && height == ((Tree) o).height;
     }
 
     @Override

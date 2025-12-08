@@ -4,6 +4,7 @@ import creatures.Buff;
 import objects.WorldObject;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class WaterLocation extends Location{
     protected WaterSource waterSource;
@@ -44,7 +45,7 @@ public class WaterLocation extends Location{
         if (this == o) return true;
         if (!(o instanceof WaterLocation)) return false;
 
-        return super.equals(o);
+        return super.equals(o) && Objects.equals(waterSource, ((WaterLocation) o).waterSource);
     }
 
     @Override

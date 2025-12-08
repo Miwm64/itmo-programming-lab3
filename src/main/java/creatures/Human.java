@@ -330,6 +330,9 @@ public class Human extends Creature{
     }
 
     public void wearBackpack(Backpack backpack) throws BackpackAlreadyExistsException {
+        if (this.backpack != null){
+            throw new BackpackAlreadyExistsException("");
+        }
         this.backpack = Objects.requireNonNull(backpack);
     }
 

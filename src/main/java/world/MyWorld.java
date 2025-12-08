@@ -83,6 +83,25 @@ public class MyWorld extends World {
         waterLocation.addObject(new Rill());
         waterLocation.addObject(new Stone());
 
+        WaterSource waterSource2 = new WaterSource(1, 1000);
+        WaterSource waterSource3 = new WaterSource(0.5, 1000);
+
+        WaterLocation waterLocation2 = new WaterLocation("", "");
+        WaterLocation waterLocation3 = new WaterLocation("", "");
+        waterLocation2.setWaterSource(waterSource2);
+        waterLocation3.setWaterSource(waterSource3);
+
+        if (!waterLocation2.equals(waterLocation3)){
+            if (waterLocation2.getWaterSource().getIsSafeToDrink() >
+            waterLocation3.getWaterSource().getIsSafeToDrink()){
+                var drinkResult = waterLocation2.getWater(1);
+            }
+            else{
+                var drinkResult = waterLocation3.getWater(1);
+            }
+        }
+
+
         for (WorldObject obj : waterLocation.getObjects()){
             if (obj instanceof Shineable shineable){
                 Sunlight sunlight = new Sunlight();
@@ -122,9 +141,14 @@ public class MyWorld extends World {
         aralVorkosigan.sit(1);
         dubauer.sit(1);
 
-        Tree leaningTree = new Tree("Baobab", currentConditions.time(), "", 15.0);
-        waterLocation.addObject(leaningTree);
-        aralVorkosigan.interact(leaningTree);
+        Tree leaningTree1 = new Tree("Baobab", currentConditions.time(), "", 15.0);
+        Tree leaningTree2 = new Tree("Baobab", currentConditions.time(), "", 15.0);
+        Tree leaningTree3 = new Tree("Baobab", currentConditions.time(), "", 16.0);
+        waterLocation.addObject(leaningTree1);
+        waterLocation.addObject(leaningTree2);
+        System.out.println("Comparison of trees:" + leaningTree1.equals(leaningTree2));
+        System.out.println("Comparison of trees:" + leaningTree1.equals(leaningTree3));
+        aralVorkosigan.interact(leaningTree1);
 
         cordeliaNaismith.lookAt(aralVorkosigan, new Fact("Vorkosigan is tired", cordeliaNaismith));
         cordeliaNaismith.realise(new Fact("Vorkosigan is the Butcher of Komarr", aralVorkosigan),
